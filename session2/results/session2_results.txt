@@ -1,0 +1,72 @@
+10,480 rows in metadata, 10,480 images present on disk
+
+########## PART 1  metadata fields ##########
+                 field        kind  distinct  missing_pct                                           warning
+           attribution categorical         1          0.0                       bias, identifies the clinic
+     copyright_license categorical         1          0.0                       bias, identifies the clinic
+            age_approx     numeric        17          0.4                                                  
+   anatom_site_general categorical         4         37.3                                                  
+   anatom_site_special categorical         2         98.0                                                  
+    concomitant_biopsy     boolean         2          0.0          leakage, suspicious lesions get biopsied
+           diagnosis_2        text        19          0.0      leakage, it is a finer version of the target
+           diagnosis_3 categorical        27          1.5      leakage, it is a finer version of the target
+           diagnosis_4 categorical        15         85.5      leakage, it is a finer version of the target
+diagnosis_confirm_type categorical         2          0.0    leakage, encodes how suspicious the doctor was
+    image_manipulation categorical         2          0.0         bias, identifies the device or processing
+            image_type categorical         2          0.0 confounder, changes colours but not the diagnosis
+           melanocytic     boolean         1         77.2               leakage, follows from the diagnosis
+                   sex categorical         2          0.0                                                  
+              subclass categorical        11          0.0                       leakage, the 11 class label
+age_approx median per class: {'Benign': 55.0, 'Indeterminate': 70.0, 'Malignant': 65.0}
+
+Strength of association with diagnosis_1, strongest first:
+                 field           test  strength   p                                           warning
+           diagnosis_3     chi-square     0.996 0.0      leakage, it is a finer version of the target
+              subclass     chi-square     0.832 0.0                       leakage, the 11 class label
+           melanocytic     chi-square     0.414 0.0               leakage, follows from the diagnosis
+           diagnosis_4     chi-square     0.403 0.0      leakage, it is a finer version of the target
+    concomitant_biopsy     chi-square     0.311 0.0          leakage, suspicious lesions get biopsied
+diagnosis_confirm_type     chi-square     0.311 0.0    leakage, encodes how suspicious the doctor was
+   anatom_site_general     chi-square     0.157 0.0                                                  
+    image_manipulation     chi-square     0.139 0.0         bias, identifies the device or processing
+            age_approx Kruskal-Wallis     0.112 0.0                                                  
+                   sex     chi-square     0.093 0.0                                                  
+   anatom_site_special     chi-square     0.065 0.0                                                  
+            image_type     chi-square     0.000 1.0 confounder, changes colours but not the diagnosis
+
+########## PART 2  colour profile ##########
+images profiled: 72
+image_type     clinical: close-up  dermoscopic
+diagnosis_1                                   
+Benign                         12           12
+Indeterminate                  12           12
+Malignant                      12           12
+
+Average colour statistics per class:
+               mean_R  mean_G  mean_B  std_R  std_G  std_B  mean_gray
+diagnosis_1                                                          
+Benign          165.1   138.3   126.2   22.5   25.1   26.7      144.9
+Indeterminate   173.2   125.9   112.7   24.4   27.0   28.2      138.5
+Malignant       177.5   134.3   119.1   15.9   21.9   24.1      145.5
+
+Average colour per image type and class, compare the type gap with the class gap:
+                                  mean_R  mean_G  mean_B  mean_gray
+image_type         diagnosis_1                                     
+clinical: close-up Benign          167.7   136.3   117.8      143.6
+                   Indeterminate   166.4   117.9    92.5      129.5
+                   Malignant       176.0   128.5   102.8      139.8
+dermoscopic        Benign          162.5   140.2   134.5      146.2
+                   Indeterminate   179.9   133.8   133.0      147.5
+                   Malignant       179.0   140.1   135.5      151.2
+
+########## PART 3  preprocessing ##########
+one preprocessed image: {'original_hw': (450, 600), 'shape': (224, 224, 3), 'mode': 'rgb', 'scaling': 'unit', 'min': 0.098, 'max': 0.706}
+batch containing a missing file, kept: ['ISIC_2695360'] failed: [('does_not_exist', 'FileNotFoundError')]
+
+########## PART 4  batch loader ##########
+10,480 images, 874 batches, classes: ['Benign', 'Indeterminate', 'Malignant']
+first batch: (12, 224, 224, 3) labels: [2, 2, 2, 0, 0, 2, 0, 2, 0, 2, 2, 0]
+
+########## PART 5  visualiser ##########
+3 classes: {'Malignant': 7268, 'Benign': 2966, 'Indeterminate': 246}
+11 classes: {'BCC': 5044, 'NV': 1492, 'BKL': 1088, 'SCCKA': 946, 'MEL': 900, 'AKIEC': 606, 'DF': 104, 'INF': 100, 'VASC': 94, 'BEN_OTH': 88, 'MAL_OTH': 18}
