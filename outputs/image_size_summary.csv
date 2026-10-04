@@ -1,0 +1,4 @@
+image_type,n_images,n_unreadable,width_min,width_median,width_max,height_min,height_median,height_max,file_kb_min,file_kb_median,file_kb_max
+all,10480,0,600.0,600.0,600.0,450.0,450.0,450.0,11.5,31.4,99.1
+clinical: close-up,5240,0,600.0,600.0,600.0,450.0,450.0,450.0,11.5,38.8,99.1
+dermoscopic,5240,0,600.0,600.0,600.0,450.0,450.0,450.0,12.2,26.0,74.1

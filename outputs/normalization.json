@@ -1,0 +1,16 @@
+{
+  "mean": [
+    0.6858,
+    0.5276,
+    0.4775
+  ],
+  "std": [
+    0.1235,
+    0.1316,
+    0.1522
+  ],
+  "n_train_images": 7334,
+  "image_size": 224,
+  "computed_on": "train split only, after Resize + CenterCrop, pixel values in [0, 1]",
+  "date": "2026-10-05"
+}

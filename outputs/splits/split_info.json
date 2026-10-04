@@ -1,0 +1,19 @@
+{
+  "seed": 42,
+  "created": "2026-10-05",
+  "method": "StratifiedGroupKFold at lesion level (groups lesion_id, strata dx|diagnosis_1), 20 folds of 5%: 3 to test, 3 to val, 14 to train; images follow their lesion",
+  "requested": {
+    "val": 0.15,
+    "test": 0.15
+  },
+  "lesions": {
+    "train": 3667,
+    "val": 786,
+    "test": 787
+  },
+  "images": {
+    "train": 7334,
+    "val": 1572,
+    "test": 1574
+  }
+}

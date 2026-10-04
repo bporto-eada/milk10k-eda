@@ -1,0 +1,156 @@
+
+===== milestone1 2026-10-05  steps: integrity eda labels quality splits preprocess augment loaders  seed 42
+
+########## integrity ##########
+metadata rows: 10,480   rows whose image file is missing: 0
+Image.verify() run on 10,480 files: 0 unreadable
+        image_type  n_images  n_unreadable  width_min  width_median  width_max  height_min  height_median  height_max  file_kb_min  file_kb_median  file_kb_max
+               all     10480             0      600.0         600.0      600.0       450.0          450.0       450.0         11.5            31.4         99.1
+clinical: close-up      5240             0      600.0         600.0      600.0       450.0          450.0       450.0         11.5            38.8         99.1
+       dermoscopic      5240             0      600.0         600.0      600.0       450.0          450.0       450.0         12.2            26.0         74.1
+loader fails loudly on a missing file: 1 of 1 images are missing, first ones: ['ISIC_0000000']. Fix the data folder (MILK10K_DIR) or pass allow_missing=True to drop them.
+[integrity: 3s]
+
+########## eda ##########
+lesions per class and diagnosis_1:
+diagnosis_1  Benign  Indeterminate  Malignant
+dx                                           
+AKIEC             0            123        180
+BCC               0              0       2522
+BEN_OTH          44              0          0
+BKL             544              0          0
+DF               52              0          0
+INF              50              0          0
+MAL_OTH           0              0          9
+MEL               0              0        450
+NV              746              0          0
+SCCKA             0              0        473
+VASC             47              0          0
+                                            Session 2 finding                                            Session 2                                    full dataset still true?                                                                          consequence for the pipeline
+                 Malignant images are redder than Benign ones   mean R 177.5 Malignant vs 165.1 Benign (72 images)       mean R 174.2 vs 170.7 (all 10,480 images)         yes                               colour carries class signal: keep RGB input and never jitter hue (A3.5)
+            Image type shifts colour more than the class does mean B gap: image type 16.7 vs class 7.1 (72 images) mean B gap: type 31.2 vs class 6.8 (all images)         yes           both views share one model: normalise with train stats over both types, evaluate per lesion
+    image_manipulation ('altered') is linked to the diagnosis                                     Cramer's V 0.139                                Cramer's V 0.139         yes             possible shortcut: never a model input; report test results for altered images separately
+diagnosis_confirm_type / concomitant_biopsy predict the label                                     Cramer's V 0.311                                Cramer's V 0.311         yes                                      label leakage: excluded from the inputs (data_quality_report.md)
+                         anatom_site_general is often missing                                        37.3% missing   37.3% missing; NV share +11.0 pp when missing         yes       missing is informative (mostly trunk): if site is used, encode 'unknown', never impute the mode
+               Indeterminate and Malignant patients are older    median 55 / 70 / 65 (Benign / Indet. / Malignant)                             median 55 / 70 / 65         yes age is a legitimate clinical input for a later metadata branch; impute 0.4% missing with train median
+                      image_type says nothing about the label                                     Cramer's V 0.000                                Cramer's V 0.000         yes                not a shortcut: every lesion has one image of each type, so every class has both views
+wrote outputs/session2_findings.md
+figures: b2_classes_diagnosis_1.png, b2_classes_dx_log.png, b2_dx_to_diagnosis_1.png, b2_gallery_by_class.png
+[eda: 17s]
+
+########## labels ##########
+{
+  "diagnosis_1": {
+    "Benign": 0,
+    "Indeterminate": 1,
+    "Malignant": 2
+  },
+  "dx": {
+    "AKIEC": 0,
+    "BCC": 1,
+    "BEN_OTH": 2,
+    "BKL": 3,
+    "DF": 4,
+    "INF": 5,
+    "MAL_OTH": 6,
+    "MEL": 7,
+    "NV": 8,
+    "SCCKA": 9,
+    "VASC": 10
+  }
+}
+lesions per diagnosis_1: {'Malignant': 3634, 'Benign': 1483, 'Indeterminate': 123}
+rare 11-class labels (lesions): {'MAL_OTH': 9, 'DF': 52, 'INF': 50, 'VASC': 47, 'BEN_OTH': 44}
+[labels: 0s]
+
+########## quality ##########
+wrote outputs/data_quality_report.md
+                     missing_%                                                                   decision
+column                                                                                                   
+age_approx                 0.4                  impute with the TRAIN median if age becomes a model input
+anatom_site_general       37.3  keep as its own category 'unknown': missing is informative (mostly trunk)
+anatom_site_special       98.0         drop the column: 98% missing, only refines acral and genital sites
+diagnosis_3                1.5                                leave NaN: label field, never a model input
+diagnosis_4               85.5                                leave NaN: label field, never a model input
+melanocytic               77.2                 leave NaN: derived from the diagnosis, never a model input
+                                         check                                    result
+                images per lesion is exactly 2                    5,240 of 5,240 lesions
+          one dermoscopic + one clinical image                    5,240 of 5,240 lesions
+        same lesion_id set in both label files 0 only in metadata, 0 only in training_gt
+         exactly one positive class per gt row                              0 violations
+        each diagnosis_3 under one diagnosis_2                              0 violations
+        each diagnosis_2 under one diagnosis_1                              0 violations
+age, sex, site, diagnosis equal on both images                           0 disagreements
+   each 11-class label maps to one diagnosis_1   AKIEC: Indeterminate 123, Malignant 180
+image_manipulation vs diagnosis_1: Cramer's V 0.139; image_type: 0.000
+[quality: 0s]
+
+########## splits ##########
+wrote outputs/splits/split_report.md
+       lesions  images  share_pct
+split                            
+train     3667    7334      69.98
+val        786    1572      15.00
+test       787    1574      15.02
+lesion overlap between splits: {'train-val': 0, 'train-test': 0, 'val-test': 0}
+lesions without exactly 2 images in one split: 0
+split    train    val   test    all
+dx                                 
+AKIEC     5.81   5.73   5.72   5.78
+BCC      48.13  48.09  48.16  48.13
+BEN_OTH   0.85   0.76   0.89   0.84
+BKL      10.36  10.31  10.55  10.38
+DF        1.01   1.02   0.89   0.99
+INF       0.95   1.02   0.89   0.95
+MAL_OTH   0.14   0.38   0.13   0.17
+MEL       8.56   8.65   8.64   8.59
+NV       14.21  14.38  14.23  14.24
+SCCKA     9.05   8.91   9.02   9.03
+VASC      0.93   0.76   0.89   0.90
+max deviation, 11 classes (pp): 0.21
+split          train    val   test    all
+diagnosis_1                              
+Benign         28.31  28.24  28.34  28.30
+Indeterminate   2.37   2.29   2.29   2.35
+Malignant      69.32  69.47  69.38  69.35
+max deviation, diagnosis_1 (pp): 0.11
+[splits: 3s]
+
+########## preprocess ##########
+images whose shorter side is >= 224px: 100.0%
+images whose shorter side is >= 256px: 100.0%
+images whose shorter side is >= 384px: 100.0%
+images whose shorter side is >= 450px: 100.0%
+images whose shorter side is >= 512px: 0.0%
+chosen input resolution: 224x224 (Resize shorter side to 224, then CenterCrop)
+normalization from 7,334 TRAIN images (28s): mean [0.6858, 0.5276, 0.4775], std [0.1235, 0.1316, 0.1522]
+views: option (a), each image is a sample with its lesion's label; evaluation averages the two predictions per lesion (aggregate_predictions)
+[preprocess: 28s]
+
+########## augment ##########
+eval_transform applied twice to ISIC_8149219: identical tensors (3, 224, 224)
+train_transform applied twice gives different tensors: True
+wrote outputs/augmentation_table.md
+        augmentation                                         parameters                                                                                                      justification
+   RandomResizedCrop output 224x224, area 0.8 to 1.0, aspect 3/4 to 4/3 zoom and framing vary between photographers; at least 80% of the frame stays, so the centred lesion is not cut out
+RandomHorizontalFlip                                            p = 0.5                                        a lesion has no left or right side; the mirror image has the same diagnosis
+  RandomVerticalFlip                                            p = 0.5                                                               the dermatoscope or camera can be held either way up
+   RandomQuarterTurn                          0, 90, 180 or 270 degrees                                      orientation is arbitrary; quarter turns add no interpolation or black corners
+         ColorJitter  brightness 0.1, contrast 0.1, saturation 0, hue 0        exposure differs between devices; hue is never touched because colour (red, brown, blue-grey) is diagnostic
+[augment: 2s]
+
+########## loaders ##########
+wrote outputs/class_weights.json
+train imbalance (lesions): {'Malignant': 2542, 'Benign': 1038, 'Indeterminate': 87}, ratio 29.2 : 1
+class weights diagnosis_1: {'Benign': 1.1776, 'Indeterminate': 14.0498, 'Malignant': 0.4809}
+train batch: images (32, 3, 224, 224) torch.float32, min -5.43, max 3.47; labels (32,) torch.int64; first ids ['ISIC_8150619', 'ISIC_4194491', 'ISIC_3468250']
+val batch:   images (32, 3, 224, 224) torch.float32, min -5.11, max 2.94
+batches per epoch: train 230, val 50, test 50
+labels seen in 20 train batches:
+               WeightedRandomSampler  plain shuffle
+Benign                           197            187
+Indeterminate                    218             10
+Malignant                        225            443
+class-weighted cross-entropy on that batch (random logits): 1.516
+one train epoch: 7,334 images in 40.9s (batch 32, 2 workers)
+[loaders: 54s]

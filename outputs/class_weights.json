@@ -1,0 +1,62 @@
+{
+  "diagnosis_1": {
+    "classes": [
+      "Benign",
+      "Indeterminate",
+      "Malignant"
+    ],
+    "train_images": [
+      2076,
+      174,
+      5084
+    ],
+    "weights": [
+      1.1776,
+      14.0498,
+      0.4809
+    ],
+    "rule": "n_train_images / (n_classes * class_count), train split only"
+  },
+  "dx": {
+    "classes": [
+      "AKIEC",
+      "BCC",
+      "BEN_OTH",
+      "BKL",
+      "DF",
+      "INF",
+      "MAL_OTH",
+      "MEL",
+      "NV",
+      "SCCKA",
+      "VASC"
+    ],
+    "train_images": [
+      426,
+      3530,
+      62,
+      760,
+      74,
+      70,
+      10,
+      628,
+      1042,
+      664,
+      68
+    ],
+    "weights": [
+      1.5651,
+      0.1889,
+      10.7537,
+      0.8773,
+      9.0098,
+      9.5247,
+      66.6727,
+      1.0617,
+      0.6399,
+      1.0041,
+      9.8048
+    ],
+    "rule": "n_train_images / (n_classes * class_count), train split only"
+  }
+}
