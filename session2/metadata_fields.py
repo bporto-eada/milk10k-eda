@@ -5,7 +5,7 @@ import pandas as pd
 from scipy import stats
 
 from shared.paths import LABEL
-from figstyle import colour, tidy, finish
+from shared.figstyle import colour, tidy, finish
 
 IGNORE = {"isic_id", "lesion_id", LABEL}
 MIN_GROUP = 20
@@ -17,7 +17,7 @@ WARNINGS = {
     "diagnosis_2": "leakage, it is a finer version of the target",
     "diagnosis_3": "leakage, it is a finer version of the target",
     "diagnosis_4": "leakage, it is a finer version of the target",
-    "subclass": "leakage, the 11 class label",
+    "dx": "leakage, the 11 class label",
     "melanocytic": "leakage, follows from the diagnosis",
     "diagnosis_confirm_type": "leakage, encodes how suspicious the doctor was",
     "concomitant_biopsy": "leakage, suspicious lesions get biopsied",

@@ -5,7 +5,7 @@ from PIL import Image
 
 from shared import paths
 from shared.paths import LABEL
-from figstyle import colour, tidy, finish, CHANNEL_COLOURS
+from shared.figstyle import colour, tidy, finish, CHANNEL_COLOURS
 from preprocess import to_grayscale
 
 CHANNELS = ("R", "G", "B")

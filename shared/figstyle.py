@@ -1,9 +1,15 @@
-from pathlib import Path
+"""Shared figure style (moved here from session2/ so the project code can reuse it).
+
+FIGURES is the folder finish() saves into. It defaults to outputs/figures;
+session2/run_session2.py points it at session2/figures before it draws.
+"""
 
 import matplotlib.pyplot as plt
 
-FIGURES = Path(__file__).resolve().parent / "figures"
-POPUP = False
+from .config import FIGURES_DIR
+
+FIGURES = FIGURES_DIR
+POPUP = False   # True: also show each figure (the notebook sets this)
 
 PALETTE = {"Benign": "#3b6ea5", "Malignant": "#c8553d", "Indeterminate": "#588157"}
 FALLBACK = "#9a9a9a"
@@ -22,7 +28,8 @@ def tidy(ax):
 
 
 def finish(fig, name):
-    FIGURES.mkdir(exist_ok=True)
+    """Save fig as FIGURES/name, show it if POPUP is on, then close it."""
+    FIGURES.mkdir(parents=True, exist_ok=True)
     fig.savefig(FIGURES / name, dpi=140, bbox_inches="tight")
     if POPUP:
         plt.show()

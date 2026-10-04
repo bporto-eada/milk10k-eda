@@ -1,10 +1,17 @@
+"""Session 2 visualiser, moved into the package so the pipeline can reuse it.
+
+image_grid           grid of images with captions (arrays, uint8 or float)
+class_balance_chart  horizontal bar chart of class counts, optional log scale
+batch_diagnostics    raw vs processed images plus the pixel histogram of a batch
+"""
+
 import math
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-from shared.paths import LABEL
-from figstyle import PALETTE, FALLBACK, CHANNEL_COLOURS, tidy, finish
+from .config import LABEL
+from .figstyle import PALETTE, FALLBACK, CHANNEL_COLOURS, tidy, finish
 
 
 def to_displayable(img):
@@ -37,17 +44,25 @@ def image_grid(images, captions=None, ncols=6, title=None, filename="grid.png"):
     finish(fig, filename)
 
 
-def class_balance_chart(df, label_col=LABEL, filename="class_balance.png"):
+def class_balance_chart(df, label_col=LABEL, filename="class_balance.png", log=False,
+                        colours=None, unit="images"):
+    """Bar chart of df[label_col] counts. colours maps a class to a bar colour."""
     counts = df[label_col].value_counts().sort_values()
     total = counts.sum()
-    colours = [PALETTE.get(c, FALLBACK) for c in counts.index]
+    palette = colours or PALETTE
+    bar_colours = [palette.get(c, FALLBACK) for c in counts.index]
 
     fig, ax = plt.subplots(figsize=(7, 0.45 * len(counts) + 1.5))
-    ax.barh(counts.index.astype(str), counts.values, color=colours, height=0.6)
+    ax.barh(counts.index.astype(str), counts.values, color=bar_colours, height=0.6)
     for i, v in enumerate(counts.values):
-        ax.text(v + total * 0.005, i, f"{v:,}  ({v / total:.1%})", va="center", fontsize=8)
-    ax.set_xlim(0, counts.max() * 1.25)
-    ax.set_xlabel("images")
+        x = v * 1.08 if log else v + total * 0.005
+        ax.text(x, i, f"{v:,}  ({v / total:.1%})", va="center", fontsize=8)
+    if log:
+        ax.set_xscale("log")
+        ax.set_xlim(counts.min() * 0.5, counts.max() * 6)
+    else:
+        ax.set_xlim(0, counts.max() * 1.25)
+    ax.set_xlabel(f"{unit} (log scale)" if log else unit)
     ax.set_title(f"Class balance for {label_col}, largest is {counts.max() / counts.min():.0f}x the smallest",
                  fontsize=10)
     ax.xaxis.grid(True, color="#e6e6e6", linewidth=0.7)

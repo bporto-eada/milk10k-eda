@@ -1,24 +1,34 @@
+"""Where each image lives on disk.
+
+All locations come from shared.config. LABEL and SUBCLASSES are re-exported
+because the session 2 scripts import them from here.
+"""
+
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = REPO_ROOT / "milk10k"
-IMAGE_DIR = DATA_DIR / "images"
-METADATA_CSV = DATA_DIR / "metadata.csv"
-LABELS_CSV = DATA_DIR / "supplements" / "training_gt.csv"
-
-LABEL = "diagnosis_1"
-SUBCLASSES = ["AKIEC", "BCC", "BEN_OTH", "BKL", "DF", "INF",
-              "MAL_OTH", "MEL", "NV", "SCCKA", "VASC"]
-EXTENSIONS = (".jpg", ".jpeg", ".png")
+from .config import IMAGE_DIR, EXTENSIONS, LABEL, REPO_ROOT, SUBCLASSES  # noqa: F401
 
 
-def find_image(isic_id):
+def shown(path):
+    """A path for messages: relative to the repo root when it is inside the repo."""
+    path = Path(path)
+    try:
+        return str(path.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(path)
+
+
+def find_image(isic_id, image_dir=None):
+    """Return the path of the image file for isic_id. Raise FileNotFoundError if there is none."""
+    folder = Path(image_dir) if image_dir is not None else IMAGE_DIR
     for ext in EXTENSIONS:
-        candidate = IMAGE_DIR / f"{isic_id}{ext}"
+        candidate = folder / f"{isic_id}{ext}"
         if candidate.exists():
             return candidate
-    raise FileNotFoundError(f"{isic_id}: no image file in {IMAGE_DIR}")
+    raise FileNotFoundError(f"{isic_id}: no image file in {shown(folder)}")
 
 
-def image_exists(isic_id):
-    return any((IMAGE_DIR / f"{isic_id}{ext}").exists() for ext in EXTENSIONS)
+def image_exists(isic_id, image_dir=None):
+    """True if an image file for isic_id exists (any of the accepted extensions)."""
+    folder = Path(image_dir) if image_dir is not None else IMAGE_DIR
+    return any((folder / f"{isic_id}{ext}").exists() for ext in EXTENSIONS)

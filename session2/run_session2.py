@@ -12,9 +12,11 @@ import metadata_fields
 import colour_profile
 from preprocess import prepare_image, prepare_many
 from batch_loader import LesionBatches
-from viewer import image_grid, class_balance_chart, batch_diagnostics
+from shared import figstyle
+from shared.viewer import image_grid, class_balance_chart, batch_diagnostics
 
 HERE = Path(__file__).resolve().parent
+figstyle.FIGURES = HERE / "figures"   # session 2 figures stay in session2/figures
 RESULTS = HERE / "results"
 transcript = []
 
@@ -61,7 +63,7 @@ def main():
     image_grid(images, captions=[loader.classes[i] for i in labels],
                title="First batch from the loader", filename="s2_loader_batch.png")
     say("3 classes:", class_balance_chart(loader.df, filename="s2_balance_3class.png").to_dict())
-    say("11 classes:", class_balance_chart(loader.df, "subclass", filename="s2_balance_11class.png").to_dict())
+    say("11 classes:", class_balance_chart(loader.df, "dx", filename="s2_balance_11class.png").to_dict())
     raw4, _, _ = prepare_many([paths.find_image(i) for i in ids[:4]], size=None, scaling=None)
     batch_diagnostics(images, raw=raw4, filename="s2_batch_diagnostics.png")
 

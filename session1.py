@@ -1,24 +1,15 @@
 """MILK10k EDA, session 1.
 
-Runs against the local copy of the dataset in eda/milk10k/ (already downloaded
-and unzipped next to this script). No download step, no network needed.
+Runs against the dataset folder set in shared/config.py (environment variable
+MILK10K_DIR, default milk10k/ at the repo root). No download step, no network needed.
 """
-
-from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# All paths resolve relative to this file, so the script works no matter
-# which folder you run it from (workspace root, eda/, VS Code Run button).
-SCRIPT_DIR = Path(__file__).resolve().parent
-DATA_DIR = SCRIPT_DIR / "milk10k"
-IMG_DIR = DATA_DIR / "images"
-METADATA_PATH = DATA_DIR / "metadata.csv"
-GT_PATH = DATA_DIR / "supplements" / "training_gt.csv"
-
-CLASS_COLS = ["AKIEC", "BCC", "BEN_OTH", "BKL", "DF", "INF",
-              "MAL_OTH", "MEL", "NV", "SCCKA", "VASC"]
+# Paths and class names come from shared/config.py, the one configuration module.
+from shared.config import DATA_DIR, IMAGE_DIR as IMG_DIR, METADATA_CSV as METADATA_PATH
+from shared.config import LABELS_CSV as GT_PATH, SUBCLASSES as CLASS_COLS
 
 
 def check_dataset() -> None:

@@ -1,0 +1,12 @@
+# the dataset is never committed: download it from ISIC (see README)
+/milk10k
+
+# Python, notebooks, editors
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+venv/
+.venv/
+.vscode/
+.DS_Store
