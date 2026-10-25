@@ -1,0 +1,79 @@
+{
+  "choice": {
+    "feature_set": "both C+T+S+meta",
+    "model": "LogReg",
+    "params": {
+      "C": 0.01
+    },
+    "selected_on": "highest VAL balanced accuracy (ties: VAL macro ROC-AUC)",
+    "cv_bal_acc": 0.6552412358489355,
+    "val_balanced_accuracy": 0.7434907434907435,
+    "val_macro_f1": 0.5723607407764825,
+    "val_macro_auc": 0.8336707234729176,
+    "date": "2026-10-25",
+    "seed": 42
+  },
+  "test_lesions": 787,
+  "metrics": {
+    "accuracy": 0.6975857687420585,
+    "balanced_accuracy": 0.7211700440399991,
+    "macro_f1": 0.5507462418828256,
+    "macro_auc": 0.827976281546046,
+    "recall_Benign": 0.6860986547085202,
+    "precision_Benign": 0.6566523605150214,
+    "recall_Indeterminate": 0.7777777777777778,
+    "precision_Indeterminate": 0.11475409836065574,
+    "recall_Malignant": 0.6996336996336996,
+    "precision_Malignant": 0.8842592592592593,
+    "sensitivity_malignant": 0.6996336996336996,
+    "specificity_malignant": 0.7925311203319502
+  },
+  "ci95": {
+    "balanced_accuracy": [
+      0.647902099976091,
+      0.7819255317013164
+    ],
+    "macro_f1": [
+      0.5189948515813125,
+      0.5809145048657153
+    ],
+    "macro_auc": [
+      0.7834591113971969,
+      0.8632735636363651
+    ],
+    "sensitivity_malignant": [
+      0.6593406593406593,
+      0.7362637362637363
+    ],
+    "specificity_malignant": [
+      0.7385892116182573,
+      0.8381742738589212
+    ]
+  },
+  "confusion": {
+    "pred Benign": {
+      "true Benign": 153,
+      "true Indeterminate": 0,
+      "true Malignant": 80
+    },
+    "pred Indeterminate": {
+      "true Benign": 24,
+      "true Indeterminate": 14,
+      "true Malignant": 84
+    },
+    "pred Malignant": {
+      "true Benign": 46,
+      "true Indeterminate": 4,
+      "true Malignant": 382
+    }
+  },
+  "triage": {
+    "threshold": 0.21260151370781585,
+    "chosen_on": "out-of-fold scores of train+val",
+    "target_sensitivity": 0.9,
+    "test_sensitivity": 0.8827838827838828,
+    "test_specificity": 0.5601659751037344,
+    "test_benign_flagged_pct": 43.04932735426009,
+    "test_indeterminate_flagged_pct": 55.55555555555556
+  }
+}

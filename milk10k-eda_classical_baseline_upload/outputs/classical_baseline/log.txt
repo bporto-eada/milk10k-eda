@@ -1,0 +1,125 @@
+
+===== classical_baseline.py features  (2026-10-25) =====
+
+--- features ---
+extracting features of 10,480 images at 300x225 ...
+done in 1684 s; failures: 0
+wrote outputs/classical_baseline/image_features.csv.gz: 10,480 images x 131 features (colour 72, texture 44, shape 15)
+        image_type   diagnosis_1  images  fallback_pct  median_lesion_area_pct
+clinical: close-up        Benign    1483      1.348618               21.417778
+clinical: close-up Indeterminate     123      1.626016               35.837037
+clinical: close-up     Malignant    3634      0.715465               38.900741
+       dermoscopic        Benign    1483      2.292650               23.069630
+       dermoscopic Indeterminate     123      1.626016               27.823704
+       dermoscopic     Malignant    3634      5.393506               25.028889
+wrote outputs/classical_baseline/segmentation_summary.md
+[features: 1694 s]
+
+===== classical_baseline.py compare final stretch  (2026-10-25) =====
+
+--- compare ---
+lesions: train 3,667, val 786
+derm C+T+S         LogReg         131 feats  CV bal.acc 0.628  VAL bal.acc 0.702  macro-F1 0.532  AUC 0.820  (6 s)
+derm C+T+S         kNN            131 feats  CV bal.acc 0.500  VAL bal.acc 0.575  macro-F1 0.624  AUC 0.732  (2 s)
+derm C+T+S         SVM-RBF        131 feats  CV bal.acc 0.631  VAL bal.acc 0.671  macro-F1 0.558  AUC 0.817  (16 s)
+derm C+T+S         RandomForest   131 feats  CV bal.acc 0.551  VAL bal.acc 0.589  macro-F1 0.621  AUC 0.830  (80 s)
+derm C+T+S         GradBoost      131 feats  CV bal.acc 0.591  VAL bal.acc 0.643  macro-F1 0.586  AUC 0.816  (84 s)
+clinical C+T+S     LogReg         131 feats  CV bal.acc 0.585  VAL bal.acc 0.622  macro-F1 0.502  AUC 0.776  (4 s)
+clinical C+T+S     kNN            131 feats  CV bal.acc 0.448  VAL bal.acc 0.461  macro-F1 0.483  AUC 0.715  (1 s)
+clinical C+T+S     SVM-RBF        131 feats  CV bal.acc 0.562  VAL bal.acc 0.558  macro-F1 0.491  AUC 0.762  (9 s)
+clinical C+T+S     RandomForest   131 feats  CV bal.acc 0.546  VAL bal.acc 0.549  macro-F1 0.557  AUC 0.823  (80 s)
+clinical C+T+S     GradBoost      131 feats  CV bal.acc 0.561  VAL bal.acc 0.607  macro-F1 0.555  AUC 0.799  (87 s)
+both colour        LogReg         144 feats  CV bal.acc 0.607  VAL bal.acc 0.619  macro-F1 0.483  AUC 0.776  (3 s)
+both colour        kNN            144 feats  CV bal.acc 0.481  VAL bal.acc 0.445  macro-F1 0.448  AUC 0.716  (1 s)
+both colour        SVM-RBF        144 feats  CV bal.acc 0.582  VAL bal.acc 0.569  macro-F1 0.506  AUC 0.768  (9 s)
+both colour        RandomForest   144 feats  CV bal.acc 0.545  VAL bal.acc 0.520  macro-F1 0.541  AUC 0.823  (74 s)
+both colour        GradBoost      144 feats  CV bal.acc 0.591  VAL bal.acc 0.650  macro-F1 0.607  AUC 0.818  (96 s)
+both texture       LogReg          88 feats  CV bal.acc 0.631  VAL bal.acc 0.737  macro-F1 0.541  AUC 0.834  (2 s)
+both texture       kNN             88 feats  CV bal.acc 0.457  VAL bal.acc 0.518  macro-F1 0.569  AUC 0.738  (1 s)
+both texture       SVM-RBF         88 feats  CV bal.acc 0.592  VAL bal.acc 0.700  macro-F1 0.538  AUC 0.803  (7 s)
+both texture       RandomForest    88 feats  CV bal.acc 0.548  VAL bal.acc 0.629  macro-F1 0.649  AUC 0.826  (74 s)
+both texture       GradBoost       88 feats  CV bal.acc 0.576  VAL bal.acc 0.620  macro-F1 0.576  AUC 0.818  (60 s)
+both shape         LogReg          30 feats  CV bal.acc 0.571  VAL bal.acc 0.616  macro-F1 0.458  AUC 0.730  (0 s)
+both shape         kNN             30 feats  CV bal.acc 0.452  VAL bal.acc 0.435  macro-F1 0.439  AUC 0.743  (1 s)
+both shape         SVM-RBF         30 feats  CV bal.acc 0.587  VAL bal.acc 0.677  macro-F1 0.527  AUC 0.785  (5 s)
+both shape         RandomForest    30 feats  CV bal.acc 0.501  VAL bal.acc 0.548  macro-F1 0.572  AUC 0.787  (40 s)
+both shape         GradBoost       30 feats  CV bal.acc 0.564  VAL bal.acc 0.597  macro-F1 0.531  AUC 0.772  (20 s)
+metadata only      LogReg           7 feats  CV bal.acc 0.594  VAL bal.acc 0.655  macro-F1 0.417  AUC 0.762  (0 s)
+metadata only      kNN              7 feats  CV bal.acc 0.432  VAL bal.acc 0.428  macro-F1 0.433  AUC 0.748  (0 s)
+metadata only      SVM-RBF          7 feats  CV bal.acc 0.593  VAL bal.acc 0.657  macro-F1 0.438  AUC 0.751  (4 s)
+metadata only      RandomForest     7 feats  CV bal.acc 0.571  VAL bal.acc 0.642  macro-F1 0.458  AUC 0.764  (11 s)
+metadata only      GradBoost        7 feats  CV bal.acc 0.580  VAL bal.acc 0.683  macro-F1 0.471  AUC 0.769  (2 s)
+both C+T+S         LogReg         262 feats  CV bal.acc 0.623  VAL bal.acc 0.679  macro-F1 0.543  AUC 0.815  (7 s)
+both C+T+S         kNN            262 feats  CV bal.acc 0.494  VAL bal.acc 0.533  macro-F1 0.579  AUC 0.765  (2 s)
+both C+T+S         SVM-RBF        262 feats  CV bal.acc 0.601  VAL bal.acc 0.569  macro-F1 0.570  AUC 0.818  (14 s)
+both C+T+S         RandomForest   262 feats  CV bal.acc 0.548  VAL bal.acc 0.611  macro-F1 0.649  AUC 0.845  (106 s)
+both C+T+S         GradBoost      262 feats  CV bal.acc 0.579  VAL bal.acc 0.626  macro-F1 0.630  AUC 0.839  (178 s)
+both C+T+S+meta    LogReg         269 feats  CV bal.acc 0.655  VAL bal.acc 0.743  macro-F1 0.572  AUC 0.834  (6 s)
+both C+T+S+meta    kNN            269 feats  CV bal.acc 0.514  VAL bal.acc 0.575  macro-F1 0.626  AUC 0.783  (2 s)
+both C+T+S+meta    SVM-RBF        269 feats  CV bal.acc 0.611  VAL bal.acc 0.649  macro-F1 0.576  AUC 0.824  (16 s)
+both C+T+S+meta    RandomForest   269 feats  CV bal.acc 0.557  VAL bal.acc 0.617  macro-F1 0.654  AUC 0.850  (105 s)
+both C+T+S+meta    GradBoost      269 feats  CV bal.acc 0.614  VAL bal.acc 0.737  macro-F1 0.667  AUC 0.872  (171 s)
+wrote outputs/classical_baseline/comparison.csv
+wrote outputs/classical_baseline/best_config.json
+
+chosen: both C+T+S+meta + LogReg {'C': 0.01}  VAL balanced accuracy 0.743
+wrote outputs/classical_baseline/comparison.md
+[compare: 1391 s]
+
+--- final ---
+final model: both C+T+S+meta + LogReg {'C': 0.01}, fitted on train+val (4,453 lesions), scored once on test (787 lesions)
+                    pred Benign  pred Indeterminate  pred Malignant
+true Benign                 153                  24              46
+true Indeterminate            0                  14               4
+true Malignant               80                  84             382
+  accuracy                   0.698
+  balanced_accuracy          0.721   95% CI 0.648 to 0.782
+  macro_f1                   0.551   95% CI 0.519 to 0.581
+  macro_auc                  0.828   95% CI 0.783 to 0.863
+  recall_Benign              0.686
+  precision_Benign           0.657
+  recall_Indeterminate       0.778
+  precision_Indeterminate    0.115
+  recall_Malignant           0.700
+  precision_Malignant        0.884
+  sensitivity_malignant      0.700   95% CI 0.659 to 0.736
+  specificity_malignant      0.793   95% CI 0.739 to 0.838
+triage threshold: {'threshold': 0.213, 'chosen_on': 'out-of-fold scores of train+val', 'target_sensitivity': 0.9, 'test_sensitivity': 0.883, 'test_specificity': 0.56, 'test_benign_flagged_pct': 43.049, 'test_indeterminate_flagged_pct': 55.556}
+           group  n_features  drop_mean  drop_std
+    derm texture          44   0.168255  0.027991
+        metadata           7   0.124193  0.033618
+     derm colour          72   0.082093  0.028974
+clinical texture          44   0.069673  0.020815
+      derm shape          15   0.036892  0.027995
+ clinical colour          72   0.035786  0.023808
+  clinical shape          15   0.005587  0.015125
+wrote outputs/classical_baseline/test_results.json
+wrote outputs/classical_baseline/test_results.md
+[final: 26 s]
+
+--- stretch ---
+11-class dx, both C+T+S+meta + LogReg: CV bal.acc 0.421, VAL 0.440, TEST 0.420 (majority class 0.091; chance 0.091)
+wrote outputs/classical_baseline/stretch_dx_results.json
+wrote outputs/classical_baseline/stretch_dx.md
+[stretch: 10 s]
+
+===== classical_baseline.py audit  (2026-10-25) =====
+
+--- audit ---
+verdict                    good  partial  failed  fallback ellipse
+diagnosis_1   view                                                
+Benign        clinical       10        1       9                 0
+              dermoscopic    15        2       2                 1
+Indeterminate clinical        1        3      15                 1
+              dermoscopic     2        5      11                 2
+Malignant     clinical        4        1      15                 0
+              dermoscopic     6        5       7                 2
+{'images': 120.0, 'bad_pct': 54.167, 'agreement': 0.867, 'sensitivity': 0.938, 'specificity': 0.782}
+view           clinical  dermoscopic
+diagnosis_1                         
+Benign             52.5         24.0
+Indeterminate      86.2         61.0
+Malignant          75.0         54.8
+wrote outputs/classical_baseline/segmentation_audit.json
+wrote outputs/classical_baseline/segmentation_audit.md
+[audit: 0 s]

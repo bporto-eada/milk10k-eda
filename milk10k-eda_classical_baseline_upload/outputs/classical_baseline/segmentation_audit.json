@@ -1,0 +1,36 @@
+{
+  "manual": {
+    "images": 120,
+    "bad_pct": 54.166666666666664,
+    "agreement": 0.8666666666666667,
+    "sensitivity": 0.9384615384615385,
+    "specificity": 0.7818181818181819
+  },
+  "flag_rule": "border share > 0.05 or fallback",
+  "flagged_pct_all_images": 57.55725190839694,
+  "flagged_pct_by_class_view": {
+    "clinical": {
+      "Benign": 52.5,
+      "Indeterminate": 86.2,
+      "Malignant": 75.0
+    },
+    "dermoscopic": {
+      "Benign": 24.0,
+      "Indeterminate": 61.0,
+      "Malignant": 54.8
+    }
+  },
+  "flagged_pct_by_dx": {
+    "VASC": 16.0,
+    "NV": 21.6,
+    "MEL": 24.4,
+    "MAL_OTH": 33.3,
+    "DF": 47.1,
+    "INF": 53.0,
+    "BEN_OTH": 55.7,
+    "BKL": 59.4,
+    "BCC": 68.8,
+    "AKIEC": 76.1,
+    "SCCKA": 78.3
+  }
+}

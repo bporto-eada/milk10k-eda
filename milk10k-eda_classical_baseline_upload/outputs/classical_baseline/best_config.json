@@ -1,0 +1,14 @@
+{
+  "feature_set": "both C+T+S+meta",
+  "model": "LogReg",
+  "params": {
+    "C": 0.01
+  },
+  "selected_on": "highest VAL balanced accuracy (ties: VAL macro ROC-AUC)",
+  "cv_bal_acc": 0.6552412358489355,
+  "val_balanced_accuracy": 0.7434907434907435,
+  "val_macro_f1": 0.5723607407764825,
+  "val_macro_auc": 0.8336707234729176,
+  "date": "2026-10-25",
+  "seed": 42
+}

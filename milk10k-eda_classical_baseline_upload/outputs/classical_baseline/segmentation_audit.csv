@@ -1,0 +1,121 @@
+isic_id,lesion_id,image_type,diagnosis_1,dx,verdict
+ISIC_5412550,IL_0127859,dermoscopic,Benign,NV,G
+ISIC_1223850,IL_0127859,clinical: close-up,Benign,NV,G
+ISIC_6972742,IL_0630515,dermoscopic,Benign,NV,G
+ISIC_7520189,IL_0630515,clinical: close-up,Benign,NV,G
+ISIC_7278376,IL_0662515,dermoscopic,Benign,NV,G
+ISIC_8748477,IL_0662515,clinical: close-up,Benign,NV,G
+ISIC_9853363,IL_1050335,dermoscopic,Benign,NV,G
+ISIC_8209412,IL_1050335,clinical: close-up,Benign,NV,G
+ISIC_0950495,IL_1539562,dermoscopic,Benign,BKL,G
+ISIC_0907716,IL_1539562,clinical: close-up,Benign,BKL,G
+ISIC_2174727,IL_1606661,dermoscopic,Benign,NV,G
+ISIC_4171479,IL_1606661,clinical: close-up,Benign,NV,G
+ISIC_9791119,IL_1659172,dermoscopic,Benign,BKL,B
+ISIC_2449826,IL_1659172,clinical: close-up,Benign,BKL,P
+ISIC_4737695,IL_2251689,dermoscopic,Benign,NV,G
+ISIC_7475784,IL_2251689,clinical: close-up,Benign,NV,F
+ISIC_5415740,IL_2689946,dermoscopic,Benign,BKL,P
+ISIC_9233052,IL_2689946,clinical: close-up,Benign,BKL,G
+ISIC_8102692,IL_3358821,dermoscopic,Benign,BKL,F
+ISIC_2963181,IL_3358821,clinical: close-up,Benign,BKL,F
+ISIC_8723719,IL_3916438,dermoscopic,Benign,NV,G
+ISIC_1345175,IL_3916438,clinical: close-up,Benign,NV,G
+ISIC_8098167,IL_4052441,dermoscopic,Benign,NV,G
+ISIC_6405109,IL_4052441,clinical: close-up,Benign,NV,G
+ISIC_3173642,IL_4581879,dermoscopic,Benign,BKL,P
+ISIC_4071197,IL_4581879,clinical: close-up,Benign,BKL,F
+ISIC_4787120,IL_5033340,dermoscopic,Benign,NV,G
+ISIC_8641274,IL_5033340,clinical: close-up,Benign,NV,F
+ISIC_9685758,IL_5264196,dermoscopic,Benign,NV,G
+ISIC_1689464,IL_5264196,clinical: close-up,Benign,NV,F
+ISIC_4604978,IL_7018812,dermoscopic,Benign,NV,G
+ISIC_5138739,IL_7018812,clinical: close-up,Benign,NV,G
+ISIC_8291456,IL_7780651,dermoscopic,Benign,BKL,F
+ISIC_2196622,IL_7780651,clinical: close-up,Benign,BKL,F
+ISIC_6374674,IL_9084119,dermoscopic,Benign,NV,G
+ISIC_2078663,IL_9084119,clinical: close-up,Benign,NV,F
+ISIC_4209803,IL_9540986,dermoscopic,Benign,NV,G
+ISIC_9601345,IL_9540986,clinical: close-up,Benign,NV,F
+ISIC_6161362,IL_9785739,dermoscopic,Benign,NV,G
+ISIC_4217947,IL_9785739,clinical: close-up,Benign,NV,F
+ISIC_9704524,IL_0143212,dermoscopic,Indeterminate,AKIEC,P
+ISIC_6163759,IL_0143212,clinical: close-up,Indeterminate,AKIEC,P
+ISIC_4842466,IL_0576358,dermoscopic,Indeterminate,AKIEC,F
+ISIC_5110123,IL_0576358,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_3064112,IL_1765810,dermoscopic,Indeterminate,AKIEC,F
+ISIC_7004185,IL_1765810,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_0467778,IL_2831969,dermoscopic,Indeterminate,AKIEC,P
+ISIC_2523004,IL_2831969,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_3343865,IL_3570537,dermoscopic,Indeterminate,AKIEC,F
+ISIC_6218940,IL_3570537,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_3633147,IL_3703578,dermoscopic,Indeterminate,AKIEC,F
+ISIC_6681430,IL_3703578,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_6603709,IL_4381909,dermoscopic,Indeterminate,AKIEC,F
+ISIC_5206219,IL_4381909,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_9000883,IL_4425238,dermoscopic,Indeterminate,AKIEC,G
+ISIC_3181599,IL_4425238,clinical: close-up,Indeterminate,AKIEC,G
+ISIC_3354653,IL_4624720,dermoscopic,Indeterminate,AKIEC,P
+ISIC_0807573,IL_4624720,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_4308587,IL_4667770,dermoscopic,Indeterminate,AKIEC,B
+ISIC_9648502,IL_4667770,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_9490027,IL_6970769,dermoscopic,Indeterminate,AKIEC,F
+ISIC_2835239,IL_6970769,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_4581129,IL_7072256,dermoscopic,Indeterminate,AKIEC,B
+ISIC_2114322,IL_7072256,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_8731377,IL_7798468,dermoscopic,Indeterminate,AKIEC,P
+ISIC_8982555,IL_7798468,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_9268987,IL_7867833,dermoscopic,Indeterminate,AKIEC,G
+ISIC_3220453,IL_7867833,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_2215472,IL_7894855,dermoscopic,Indeterminate,AKIEC,F
+ISIC_9528989,IL_7894855,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_0546389,IL_8270942,dermoscopic,Indeterminate,AKIEC,F
+ISIC_3844756,IL_8270942,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_6567490,IL_8396815,dermoscopic,Indeterminate,AKIEC,F
+ISIC_4678467,IL_8396815,clinical: close-up,Indeterminate,AKIEC,F
+ISIC_9445672,IL_8689446,dermoscopic,Indeterminate,AKIEC,F
+ISIC_9263681,IL_8689446,clinical: close-up,Indeterminate,AKIEC,B
+ISIC_2368450,IL_8767965,dermoscopic,Indeterminate,AKIEC,F
+ISIC_8898834,IL_8767965,clinical: close-up,Indeterminate,AKIEC,P
+ISIC_2585669,IL_9592947,dermoscopic,Indeterminate,AKIEC,P
+ISIC_3769921,IL_9592947,clinical: close-up,Indeterminate,AKIEC,P
+ISIC_4169509,IL_0541987,dermoscopic,Malignant,BCC,F
+ISIC_1301371,IL_0541987,clinical: close-up,Malignant,BCC,F
+ISIC_9992299,IL_1470689,dermoscopic,Malignant,BCC,G
+ISIC_6660770,IL_1470689,clinical: close-up,Malignant,BCC,F
+ISIC_3167917,IL_1515252,dermoscopic,Malignant,AKIEC,F
+ISIC_2343149,IL_1515252,clinical: close-up,Malignant,AKIEC,F
+ISIC_8723221,IL_1524130,dermoscopic,Malignant,SCCKA,P
+ISIC_8879305,IL_1524130,clinical: close-up,Malignant,SCCKA,F
+ISIC_1960660,IL_3239005,dermoscopic,Malignant,SCCKA,P
+ISIC_4584930,IL_3239005,clinical: close-up,Malignant,SCCKA,P
+ISIC_0972110,IL_3968008,dermoscopic,Malignant,BCC,F
+ISIC_9297122,IL_3968008,clinical: close-up,Malignant,BCC,F
+ISIC_7087826,IL_4050441,dermoscopic,Malignant,BCC,P
+ISIC_3729094,IL_4050441,clinical: close-up,Malignant,BCC,F
+ISIC_7946501,IL_4088084,dermoscopic,Malignant,SCCKA,F
+ISIC_7056997,IL_4088084,clinical: close-up,Malignant,SCCKA,F
+ISIC_8857322,IL_4429998,dermoscopic,Malignant,BCC,F
+ISIC_5643199,IL_4429998,clinical: close-up,Malignant,BCC,F
+ISIC_6904950,IL_4571173,dermoscopic,Malignant,MEL,P
+ISIC_7653495,IL_4571173,clinical: close-up,Malignant,MEL,F
+ISIC_2791059,IL_5950762,dermoscopic,Malignant,SCCKA,B
+ISIC_6630088,IL_5950762,clinical: close-up,Malignant,SCCKA,G
+ISIC_2733454,IL_6049551,dermoscopic,Malignant,BCC,G
+ISIC_4529113,IL_6049551,clinical: close-up,Malignant,BCC,F
+ISIC_2974995,IL_6732051,dermoscopic,Malignant,BCC,G
+ISIC_3078783,IL_6732051,clinical: close-up,Malignant,BCC,F
+ISIC_9178763,IL_7595050,dermoscopic,Malignant,BCC,P
+ISIC_6954599,IL_7595050,clinical: close-up,Malignant,BCC,F
+ISIC_6351671,IL_7601833,dermoscopic,Malignant,SCCKA,G
+ISIC_9804365,IL_7601833,clinical: close-up,Malignant,SCCKA,G
+ISIC_2748624,IL_7980891,dermoscopic,Malignant,BCC,F
+ISIC_2533190,IL_7980891,clinical: close-up,Malignant,BCC,F
+ISIC_1276558,IL_7985046,dermoscopic,Malignant,BCC,G
+ISIC_9890732,IL_7985046,clinical: close-up,Malignant,BCC,G
+ISIC_9842192,IL_8402366,dermoscopic,Malignant,SCCKA,B
+ISIC_6941286,IL_8402366,clinical: close-up,Malignant,SCCKA,F
+ISIC_6367091,IL_9520593,dermoscopic,Malignant,BCC,F
+ISIC_9052310,IL_9520593,clinical: close-up,Malignant,BCC,F
+ISIC_2179705,IL_9565231,dermoscopic,Malignant,MEL,G
+ISIC_4536273,IL_9565231,clinical: close-up,Malignant,MEL,G
