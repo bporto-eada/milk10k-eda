@@ -1,0 +1,12 @@
+rank,session,model,input,trainable weights,val macro-F1,test macro-F1,test 95% CI
+1,7,ResNet-18 fine-tuned: whole network,"derm image, 224x224",11178051.0,0.6815575871837215,0.5968642769708657,0.549 to 0.645
+2,7,ResNet-18 fine-tuned: layer4,"derm image, 224x224",8395267.0,0.6811523296617837,0.6339743143866855,0.584 to 0.682
+3,7,ResNet-18 fine-tuned: layer3 + layer4,"derm image, 224x224",10494979.0,0.675509849326525,0.6267805195058753,0.570 to 0.683
+4,5,GradBoost (best Session 5 macro-F1),"both images + metadata, 269 features",,0.6673319334679202,0.5987541103575228,0.544 to 0.653
+5,5,Random forest,"derm image, 131 features",,0.620574132560073,0.5737421736635985,0.504 to 0.643
+6,6,MLP on handcrafted features,"derm image, 131 features",8643.0,0.6107406838325677,0.5610392038738035,0.514 to 0.608
+7,5,Logistic regression (Session 5 choice),"both images + metadata, 269 features",,0.5723607407764825,0.5316203753737526,0.499 to 0.562
+8,7,ResNet-18 frozen + linear head,"derm image, 224x224",1539.0,0.5671148677606639,0.5370820593798593,0.507 to 0.568
+9,7,CNN from scratch,"derm image, 224x224",306147.0,0.5310069158263547,0.4883203811158781,0.457 to 0.524
+10,6,MLP on raw pixels,"derm image, 32x32 pixels (3,072)",196867.0,0.5211892495079559,0.5017156862745099,0.454 to 0.560
+11,ref,always Malignant,none,0.0,0.2732732732732733,0.2730682670667667,0.273 to 0.273

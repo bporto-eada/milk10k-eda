@@ -1,0 +1,5 @@
+run,trainable weights,s / epoch,best val macro-F1,best epoch
+1. frozen backbone + linear head,1539,,0.567,
+2. layer4 + fc,8395267,125,0.681,2
+2b. layer3 + layer4 + fc (mini challenge),10494979,155,0.676,2
+3. whole network,11178051,244,0.682,2

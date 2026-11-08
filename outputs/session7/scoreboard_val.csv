@@ -1,0 +1,7 @@
+,val macro-F1
+ResNet-18 fine-tuned layer4,0.681
+ResNet-18 fine-tuned layer3 + layer4,0.676
+classical: dermoscopic features + RandomForest,0.621
+classical final: both C+T+S+meta + LogReg,0.572
+ResNet-18 frozen + linear head,0.567
+CNN from scratch,0.531

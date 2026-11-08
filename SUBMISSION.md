@@ -3,6 +3,16 @@
 **Name:** Bruno Curi
 **Repository:** https://github.com/bporto-eada/milk10k-eda
 
+## Session 7: CNNs and the final scoreboard (homework before Session 8)
+
+* Report with the scoreboard: [reports/session7_homework_report.md](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/session7_homework_report.md), [PDF](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/session7_homework_report.pdf)
+* Notebook, run on the real data with all outputs (class lab, mini challenge, homework in section 12): [session7_cnns.ipynb](https://github.com/bporto-eada/milk10k-eda/blob/main/session7_cnns.ipynb), [PDF](https://github.com/bporto-eada/milk10k-eda/blob/main/session7_cnns.pdf)
+* Final scoreboard, Sessions 5 to 7, validation and test macro-F1: [outputs/session7/scoreboard.md](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/scoreboard.md), [scoreboard.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/scoreboard.csv)
+* Fine-tuning strategies 1 to 3 and the mini challenge: [outputs/session7/finetuning_strategies.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/finetuning_strategies.csv)
+* Every model's predictions per lesion: [predictions_val.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/predictions_val.csv), [predictions_test.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/predictions_test.csv)
+* Figures: [outputs/session7/figures](https://github.com/bporto-eada/milk10k-eda/tree/main/outputs/session7/figures)
+* Code the notebook reuses: split and class weights [outputs/splits](https://github.com/bporto-eada/milk10k-eda/tree/main/outputs/splits), [shared/datasets.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/datasets.py), [shared/labels.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/labels.py); Session 5 models [shared/classical.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/classical.py) with their tuned settings in [comparison.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/comparison.csv)
+
 ## Classical ML baseline
 
 * Report: [reports/classical_baseline_report.md](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/classical_baseline_report.md), [PDF](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/classical_baseline_report.pdf)

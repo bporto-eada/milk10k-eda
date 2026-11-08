@@ -22,6 +22,10 @@ handling and PyTorch DataLoaders, all evolved from the Session 2 code.
 shape (ABCD) features of both views plus metadata, 8 feature sets x 5 scikit-learn models compared on the Milestone 1
 splits, the best configuration chosen on validation and scored once on test. It is the bar the CNN has to beat.
 
+**Goal of Session 7.** CNNs on the dermoscopic image: a small CNN trained from scratch, then an ImageNet ResNet-18
+used as a frozen feature extractor and fine-tuned with more and more layers unfrozen, and the final scoreboard of
+every model of Sessions 5 to 7 on the same validation and test lesions.
+
 ## 2. Setup and run
 
 Python 3.12 (3.10 or newer works).
@@ -73,6 +77,17 @@ Only `features` needs the images. Without a local copy of the dataset, open `cla
 Google Colab: it downloads MILK10k from ISIC, runs the step and returns `outputs/classical_baseline/` as a zip. The
 committed `image_features.csv.gz` lets every later step run without the dataset.
 
+**Session 7 (CNNs and the final scoreboard):**
+
+```
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 session7_cnns.ipynb
+```
+
+About 70 minutes on a 2-core CPU, much less on a Colab GPU. On Colab
+(`colab.research.google.com/github/bporto-eada/milk10k-eda/blob/main/session7_cnns.ipynb`, Runtime: GPU) the first
+cell clones the repo and downloads MILK10k by itself. The images are decoded once into `milk10k/cache/` (not
+committed); the ResNet-18 ImageNet weights come from torchvision. Results go to `outputs/session7/`.
+
 ## 3. Repository structure
 
 ```
@@ -85,6 +100,8 @@ homework_part_a.pdf            Part A exported to PDF
 milestone1.py                  Part B entry point: runs steps B1 to B8 and writes outputs/
 classical_baseline.py          classical ML baseline: steps features, audit, compare, final, stretch
 classical_baseline_colab.ipynb runs the features step on Google Colab (downloads MILK10k from ISIC)
+session7_cnns.ipynb            Session 7: CNN from scratch, ResNet-18 frozen and fine-tuned, final scoreboard (run)
+session7_cnns.pdf              the run notebook exported to PDF
 shared/                        importable package with all reusable code
   config.py                    the only place for paths, seed, label columns, split sizes, image size, loader settings
   features.py                  hand-crafted features: lesion mask, colour, texture, shape (ABCD), metadata
@@ -113,6 +130,13 @@ outputs/                       generated files only (written by milestone1.py an
     stretch_dx.md              the 11-class run
     figures/                   masks, comparison heatmap, confusion matrix, ROC, feature-group importance
     log.txt                    console output of every run
+  session7/                    everything session7_cnns.ipynb writes:
+    scoreboard.csv / .md       final scoreboard, Sessions 5 to 7: validation and test macro-F1, test 95% CI
+    scoreboard_val.csv         the in-class validation scoreboard (sections 10 and 11)
+    finetuning_strategies.csv  strategies 1 to 3 and the mini challenge: trainable weights, s/epoch, val macro-F1
+    predictions_val.csv        every model's prediction for each validation lesion
+    predictions_test.csv       every model's prediction for each test lesion
+    figures/                   scoreboard, validation macro-F1 per epoch, best model's test confusion matrix
   splits/train.csv             train images (one row per image, lesions never split)
   splits/val.csv               validation images
   splits/test.csv              test images
@@ -135,6 +159,8 @@ reports/
   milestone1_report.pdf        the same report as PDF
   classical_baseline_report.md classical ML baseline report
   classical_baseline_report.pdf the same report as PDF
+  session7_homework_report.md  Session 7 homework: final scoreboard and results (with links to the code)
+  session7_homework_report.pdf the same report as PDF
 session1.py                    session 1 EDA: samples per class, age and sex per class
 session1_exercises.py          session 1 practice questions
 figures/                       session 1 figures
@@ -185,3 +211,11 @@ macro ROC-AUC 0.828, Malignant sensitivity 0.70 at specificity 0.79; always answ
 Dermoscopic texture and metadata matter most; the lesion mask fails on about half of the images (mostly pink,
 non-pigmented lesions) and altered photos push predictions away from Malignant. 11 classes: balanced accuracy 0.420.
 Details: [reports/classical_baseline_report.md](reports/classical_baseline_report.md).
+
+**Session 7: CNNs and the final scoreboard.** On the dermoscopic image alone, an ImageNet ResNet-18 fine-tuned on
+MILK10k is the best model family. Best model, chosen on validation: the whole network fine-tuned, macro-F1 0.682 on
+validation and **0.597 on test** (95% CI 0.549 to 0.645); fine-tuning only `layer4` ties on validation (0.681) at half
+the time per epoch and scores 0.634 on test. The CNN from scratch (0.531) and the frozen backbone with a linear head
+(0.567) stay below the handcrafted-feature random forest (0.621); the best classical model needs both images and the
+metadata to come close (0.667 validation, 0.599 test). Details: [reports/session7_homework_report.md](reports/session7_homework_report.md),
+scoreboard in [outputs/session7/scoreboard.md](outputs/session7/scoreboard.md).
