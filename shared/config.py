@@ -35,6 +35,10 @@ CLASS_WEIGHTS_JSON = OUTPUT_DIR / "class_weights.json"
 NORMALIZATION_JSON = OUTPUT_DIR / "normalization.json"
 IMAGE_SIZE_SUMMARY_CSV = OUTPUT_DIR / "image_size_summary.csv"
 IMAGE_SIZES_CSV = OUTPUT_DIR / "image_sizes.csv"
+BASELINE_DIR = OUTPUT_DIR / "classical_baseline"            # classical ML baseline (classical_baseline.py)
+BASELINE_FIGURES_DIR = BASELINE_DIR / "figures"
+IMAGE_FEATURES_CSV = BASELINE_DIR / "image_features.csv.gz"   # one row of hand-crafted features per image
+MANIPULATION_CSV = BASELINE_DIR / "image_manipulation.csv"     # isic_id -> image_manipulation, test subgroups only
 
 # ---- labels ----
 LABEL = "diagnosis_1"            # primary target: Benign / Indeterminate / Malignant
@@ -53,3 +57,8 @@ TEST_SIZE = 0.15
 IMAGE_SIZE = 224
 BATCH_SIZE = 32
 NUM_WORKERS = 2
+
+# ---- classical ML baseline ----
+CV_FOLDS = 5                     # stratified folds on the train lesions for hyper-parameter search
+BOOTSTRAP_RESAMPLES = 2000       # stratified bootstrap of the test lesions for 95% intervals
+TRIAGE_SENSITIVITY = 0.90        # Malignant sensitivity the triage threshold must reach

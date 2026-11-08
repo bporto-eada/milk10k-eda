@@ -1,7 +1,22 @@
-# Submission: Homework Sessions 1-3 and Milestone 1
+# Submissions
 
 **Name:** Bruno Curi
 **Repository:** https://github.com/bporto-eada/milk10k-eda
+
+## Classical ML baseline
+
+* Report: [reports/classical_baseline_report.md](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/classical_baseline_report.md), [PDF](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/classical_baseline_report.pdf)
+* Entry point, steps features, audit, compare, final, stretch: [classical_baseline.py](https://github.com/bporto-eada/milk10k-eda/blob/main/classical_baseline.py)
+* Feature extraction (lesion mask, colour, texture, shape, metadata): [shared/features.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/features.py)
+* Feature sets, models, metrics, bootstrap, importance: [shared/classical.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/classical.py)
+* Settings (paths, CV folds, bootstrap size): [shared/config.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/config.py)
+* Colab notebook for the features step: [classical_baseline_colab.ipynb](https://github.com/bporto-eada/milk10k-eda/blob/main/classical_baseline_colab.ipynb)
+* Tests: [tests/test_features.py](https://github.com/bporto-eada/milk10k-eda/blob/main/tests/test_features.py)
+* Results: [comparison.md](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/comparison.md), [best_config.json](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/best_config.json), [test_results.md](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/test_results.md), [stretch_dx.md](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/stretch_dx.md), [segmentation_audit.md](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/segmentation_audit.md), [log.txt](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/log.txt)
+* Features of all images: [image_features.csv.gz](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/image_features.csv.gz)
+* Figures: [outputs/classical_baseline/figures](https://github.com/bporto-eada/milk10k-eda/tree/main/outputs/classical_baseline/figures)
+
+# Homework Sessions 1-3 and Milestone 1
 
 ## Part A
 

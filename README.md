@@ -18,6 +18,10 @@ the diagnosis hierarchy in `metadata.csv`. License: CC BY-NC 4.0 (non-commercial
 strategy, lesion-level train / val / test splits, train-only normalization statistics, augmentation, class-imbalance
 handling and PyTorch DataLoaders, all evolved from the Session 2 code.
 
+**Goal of the classical baseline.** A first model with hand-crafted features and classical ML: colour, texture and
+shape (ABCD) features of both views plus metadata, 8 feature sets x 5 scikit-learn models compared on the Milestone 1
+splits, the best configuration chosen on validation and scored once on test. It is the bar the CNN has to beat.
+
 ## 2. Setup and run
 
 Python 3.12 (3.10 or newer works).
@@ -47,7 +51,7 @@ place only, `shared/config.py`. If only the images live elsewhere (as in the cla
 python milestone1.py                       # Part B, steps B1 to B8, about 3 minutes; writes outputs/
 python milestone1.py splits                # only one step (integrity, eda, labels, quality, splits,
                                            #   preprocess, augment, loaders)
-python -m pytest tests                     # 21 tests on synthetic data, no dataset needed
+python -m pytest tests                     # 30 tests on synthetic data, no dataset needed
 jupyter nbconvert --to notebook --execute --inplace homework_part_a.ipynb    # re-run Part A
 jupyter nbconvert --to html homework_part_a.ipynb                           # then print to PDF in a browser
 python session1.py                         # session 1 EDA
@@ -56,6 +60,18 @@ python session2/run_session2.py            # session 2 homework
 
 `preprocess`, `augment` and `loaders` read the files written by the earlier steps (image sizes, splits,
 normalization), so run the steps in the order above the first time.
+
+**Classical baseline:**
+
+```
+python classical_baseline.py               # all steps: features, audit, compare, final, stretch
+python classical_baseline.py features      # needs the images, about 30 minutes; writes image_features.csv.gz
+python classical_baseline.py compare final stretch    # needs only image_features.csv.gz (committed), about 20 min
+```
+
+Only `features` needs the images. Without a local copy of the dataset, open `classical_baseline_colab.ipynb` in
+Google Colab: it downloads MILK10k from ISIC, runs the step and returns `outputs/classical_baseline/` as a zip. The
+committed `image_features.csv.gz` lets every later step run without the dataset.
 
 ## 3. Repository structure
 
@@ -67,8 +83,12 @@ requirements.txt               Python packages for the whole repo
 homework_part_a.ipynb          Part A: one section per exercise (A1.1 to A3.6), code, outputs and answers
 homework_part_a.pdf            Part A exported to PDF
 milestone1.py                  Part B entry point: runs steps B1 to B8 and writes outputs/
+classical_baseline.py          classical ML baseline: steps features, audit, compare, final, stretch
+classical_baseline_colab.ipynb runs the features step on Google Colab (downloads MILK10k from ISIC)
 shared/                        importable package with all reusable code
   config.py                    the only place for paths, seed, label columns, split sizes, image size, loader settings
+  features.py                  hand-crafted features: lesion mask, colour, texture, shape (ABCD), metadata
+  classical.py                 lesion feature table, feature sets, model grids, metrics, bootstrap, importance
   paths.py                     finds the image file of an isic_id
   data.py                      loads metadata.csv + training_gt.csv, builds the lesion table, fails on missing images
   checks.py                    label-consistency, integrity (Image.verify) and association checks
@@ -82,7 +102,17 @@ tests/
   test_splits.py               split properties: no overlap, sizes within 1 pp, reproducible, images follow lesions
   test_transforms.py           eval_transform deterministic, output shape and dtype, augmentation is random
   test_datasets.py             LesionDataset and ImageDataset batches, missing-file errors, aggregate_predictions
+  test_features.py             lesion mask, feature values, lesion table, feature sets, metrics and bootstrap
 outputs/                       generated files only (written by milestone1.py and the notebook)
+  classical_baseline/          everything classical_baseline.py writes:
+    image_features.csv.gz      131 features of each of the 10,480 images
+    segmentation_audit.*       manual mask verdicts on 120 images and the failure estimate for all images
+    comparison.csv / .md       8 feature sets x 5 models: CV and validation scores, chosen hyper-parameters
+    best_config.json           the configuration chosen on validation
+    test_results.json / .md    test metrics with 95% intervals, confusion matrix, baselines, triage point
+    stretch_dx.md              the 11-class run
+    figures/                   masks, comparison heatmap, confusion matrix, ROC, feature-group importance
+    log.txt                    console output of every run
   splits/train.csv             train images (one row per image, lesions never split)
   splits/val.csv               validation images
   splits/test.csv              test images
@@ -103,6 +133,8 @@ outputs/                       generated files only (written by milestone1.py an
 reports/
   milestone1_report.md         Milestone 1 report (2 pages)
   milestone1_report.pdf        the same report as PDF
+  classical_baseline_report.md classical ML baseline report
+  classical_baseline_report.pdf the same report as PDF
 session1.py                    session 1 EDA: samples per class, age and sex per class
 session1_exercises.py          session 1 practice questions
 figures/                       session 1 figures
@@ -122,7 +154,8 @@ they were submitted; their reusable parts (paths, loading, visualiser, figure st
 
 * Not committed: the dataset (`milk10k/`, images and CSVs; it is in `.gitignore`). Anyone can download it from ISIC.
 * Committed: code, the notebook and its PDF, and the small generated files in `outputs/` (split CSVs, JSON files,
-  reports, figures), so results can be checked without re-running.
+  reports, figures), so results can be checked without re-running. The image features (`image_features.csv.gz`,
+  4.8 MB, numbers only, no pixels) are committed so the baseline can be re-trained without the dataset.
 * Generated files go to `outputs/` (Session 2 keeps its own `session2/figures` and `session2/results`).
 * Seed: **42** (`shared/config.py`), used for the split, sampling and the DataLoaders.
 * Splits created on **2026-10-05** with seed 42 (recorded in `outputs/splits/split_info.json`).
@@ -144,3 +177,11 @@ they were submitted; their reusable parts (paths, loading, visualiser, figure st
   per lesion, and metrics are computed per lesion.
 
 Details and justification: [reports/milestone1_report.md](reports/milestone1_report.md).
+
+**Classical ML baseline.** 131 hand-crafted features per image (colour, texture, ABCD shape) for both views plus age,
+sex and site; 8 feature sets x 5 models tuned by CV on train and chosen on val. Chosen: both views + metadata,
+logistic regression (C = 0.01). Test (787 lesions, scored once): balanced accuracy 0.721 (95% CI 0.648 to 0.782),
+macro ROC-AUC 0.828, Malignant sensitivity 0.70 at specificity 0.79; always answering "Malignant" scores 0.333.
+Dermoscopic texture and metadata matter most; the lesion mask fails on about half of the images (mostly pink,
+non-pigmented lesions) and altered photos push predictions away from Malignant. 11 classes: balanced accuracy 0.420.
+Details: [reports/classical_baseline_report.md](reports/classical_baseline_report.md).
