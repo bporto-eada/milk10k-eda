@@ -1,12 +1,12 @@
 """Classical ML baseline for MILK10k: hand-crafted features + scikit-learn classifiers.
 
-    python classical_baseline.py                    run every step, in order
-    python classical_baseline.py compare final      run only the named steps
+    python m2_baseline/classical_baseline.py                    run every step, in order (from the repo root)
+    python m2_baseline/classical_baseline.py compare final      run only the named steps
 
 Steps
   features   colour, texture and shape features of all 10,480 images (shared/features.py),
              saved to image_features.csv.gz; segmentation check and example figure
-             (the only step that needs the images; classical_baseline_colab.ipynb runs it on Colab)
+             (the only step that needs the images; m2_baseline/classical_baseline_colab.ipynb runs it on Colab)
   audit      lesion-mask quality: manual verdicts on 120 images (segmentation_audit.csv) checked
              against an automatic flag, which then estimates the failure rate on all images
   compare    8 feature sets x 5 models: hyper-parameters tuned by 5-fold CV on the TRAIN lesions,
@@ -28,6 +28,9 @@ import sys
 import time
 import warnings
 from datetime import date
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))       # the repo root, so that `shared` can be imported
 
 import matplotlib
 matplotlib.use("Agg")
@@ -116,7 +119,7 @@ def load_images():
 
 def load_lesions():
     if not config.IMAGE_FEATURES_CSV.exists():
-        raise FileNotFoundError("image_features.csv.gz not found: run  python classical_baseline.py features")
+        raise FileNotFoundError("image_features.csv.gz not found: run  python m2_baseline/classical_baseline.py features")
     image_features = pd.read_csv(config.IMAGE_FEATURES_CSV, index_col="isic_id")
     return classical.lesion_feature_table(image_features, load_images())
 

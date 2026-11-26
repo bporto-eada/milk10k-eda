@@ -1,0 +1,12 @@
+{
+  "model": "ResNet-18 fine-tuned: whole network",
+  "chosen_by": "highest validation macro-F1 among the deep models",
+  "best_epoch": 2,
+  "val_macro_f1": 0.6815575871837215,
+  "test_macro_f1": 0.5968642769708657,
+  "test_95_ci": [
+    0.5489304606955472,
+    0.6445395172863516
+  ],
+  "test_accuracy": 0.7992376089096069
+}

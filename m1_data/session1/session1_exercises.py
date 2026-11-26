@@ -48,7 +48,7 @@ def q2_typical_image_size(df, n=200, seed=1):
 def q3_visual_comparison(df):
     show_examples(df, "Malignant")
     show_examples(df, "Benign")
-    print("Q3: figures saved to figures/ex1_examples_malignant.png and figures/ex1_examples_benign.png")
+    print("Q3: figures saved to m1_data/session1/figures/ex1_examples_malignant.png and m1_data/session1/figures/ex1_examples_benign.png")
     print("What stands out: malignant lesions look pinker and less symmetric with a rougher border, "
           "benign lesions are mostly an even brown with a smoother outline.")
 

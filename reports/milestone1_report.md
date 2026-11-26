@@ -1,7 +1,7 @@
 # Milestone 1 report: a leak-free data pipeline for MILK10k
 
-Bruno Curi · Computer Vision and Speech Recognition, EADA · code: `milestone1.py` and `shared/` · every number
-below comes from `python milestone1.py` (log in `outputs/milestone1_log.txt`).
+Bruno Curi · Computer Vision and Speech Recognition, EADA · code: `m1_data/milestone1.py` and `shared/` · every number
+below comes from `python m1_data/milestone1.py` (log in `outputs/milestone1_log.txt`).
 
 ## 1. Label strategy
 

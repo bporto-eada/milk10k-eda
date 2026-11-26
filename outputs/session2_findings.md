@@ -1,6 +1,6 @@
 # Session 2 findings re-checked on the full dataset
 
-Produced by `python milestone1.py eda`.
+Produced by `python m1_data/milestone1.py eda`.
 
 | Session 2 finding | Session 2 | full dataset | still true? | consequence for the pipeline |
 |---|---|---|---|---|

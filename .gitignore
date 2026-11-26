@@ -1,5 +1,7 @@
 # the dataset is never committed: download it from ISIC (see README)
 /milk10k
+/milk10k_test
+
 
 # Python, notebooks, editors
 __pycache__/

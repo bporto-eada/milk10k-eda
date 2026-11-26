@@ -1,6 +1,6 @@
 # Split verification
 
-Seed 42, created 2026-10-05 by `python milestone1.py splits`.
+Seed 42, created 2026-10-05 by `python m1_data/milestone1.py splits`.
 
 ## Sizes
 

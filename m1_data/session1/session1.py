@@ -4,6 +4,11 @@ Runs against the dataset folder set in shared/config.py (environment variable
 MILK10K_DIR, default milk10k/ at the repo root). No download step, no network needed.
 """
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))       # the repo root, so that `shared` can be imported
+
 import matplotlib.pyplot as plt
 import pandas as pd
 

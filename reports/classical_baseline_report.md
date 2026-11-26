@@ -1,7 +1,7 @@
 # Classical ML baseline for MILK10k
 
-Bruno Curi · Computer Vision and Speech Recognition, EADA · code: `classical_baseline.py`, `shared/features.py`,
-`shared/classical.py` · every number below comes from `python classical_baseline.py` (log in
+Bruno Curi · Computer Vision and Speech Recognition, EADA · code: `m2_baseline/classical_baseline.py`, `shared/features.py`,
+`shared/classical.py` · every number below comes from `python m2_baseline/classical_baseline.py` (log in
 `outputs/classical_baseline/log.txt`, tables and figures in the same folder).
 
 ## 1. Task and evaluation protocol

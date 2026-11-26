@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-sys.path.append(str(Path(__file__).resolve().parents[1]))
+sys.path.append(str(Path(__file__).resolve().parents[2]))       # the repo root, so that `shared` can be imported
 
 import matplotlib
 matplotlib.use("Agg")
@@ -16,7 +16,7 @@ from shared import figstyle
 from shared.viewer import image_grid, class_balance_chart, batch_diagnostics
 
 HERE = Path(__file__).resolve().parent
-figstyle.FIGURES = HERE / "figures"   # session 2 figures stay in session2/figures
+figstyle.FIGURES = HERE / "figures"   # session 2 figures stay in m1_data/session2/figures
 RESULTS = HERE / "results"
 transcript = []
 
@@ -69,7 +69,7 @@ def main():
 
     RESULTS.mkdir(exist_ok=True)
     (RESULTS / "session2_results.txt").write_text("\n".join(transcript))
-    print("\nFinished. Figures are in session2/figures, numbers in session2/results/session2_results.txt")
+    print("\nFinished. Figures are in m1_data/session2/figures, numbers in m1_data/session2/results/session2_results.txt")
 
 
 if __name__ == "__main__":

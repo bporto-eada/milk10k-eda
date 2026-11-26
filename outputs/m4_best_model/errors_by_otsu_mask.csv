@@ -1,0 +1,5 @@
+true,otsu mask,lesions,wrong,error_rate
+Benign,mask failed,50,35,0.7
+Benign,mask plausible,173,33,0.1907514450867052
+Malignant,mask failed,303,26,0.0858085808580858
+Malignant,mask plausible,243,52,0.2139917695473251

@@ -1,7 +1,7 @@
-"""Shared figure style (moved here from session2/ so the project code can reuse it).
+"""Shared figure style (moved here from m1_data/session2/ so the project code can reuse it).
 
 FIGURES is the folder finish() saves into. It defaults to outputs/figures;
-session2/run_session2.py points it at session2/figures before it draws.
+m1_data/session2/run_session2.py points it at m1_data/session2/figures before it draws.
 """
 
 import matplotlib.pyplot as plt

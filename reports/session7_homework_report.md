@@ -1,12 +1,12 @@
 # Session 7 homework: CNNs on MILK10k and the final scoreboard
 
 <p class="meta">Bruno Curi · Computer Vision and Speech Recognition, EADA · homework of Session 7 (slide 30), before Session 8 ·
-every number below is printed by <code>session7_cnns.ipynb</code> or read from the files it writes in <code>outputs/session7/</code>.</p>
+every number below is printed by <code>m3_deep/session7_cnns.ipynb</code> or read from the files it writes in <code>outputs/session7/</code>.</p>
 
 <div class="links" markdown="1">
 **Code and results**, repository [github.com/bporto-eada/milk10k-eda](https://github.com/bporto-eada/milk10k-eda)
 
-* Notebook, run on the real data with every output: [session7_cnns.ipynb](https://github.com/bporto-eada/milk10k-eda/blob/main/session7_cnns.ipynb) ([PDF](https://github.com/bporto-eada/milk10k-eda/blob/main/session7_cnns.pdf)). Class lab in sections 1 to 11, mini challenge in 11.1, homework in section 12: 12.1 full fine-tuning, 12.2 scoreboard, 12.3 best model, 12.4 reading.
+* Notebook, run on the real data with every output: [session7_cnns.ipynb](https://github.com/bporto-eada/milk10k-eda/blob/main/m3_deep/session7_cnns.ipynb) ([PDF](https://github.com/bporto-eada/milk10k-eda/blob/main/m3_deep/session7_cnns.pdf)). Class lab in sections 1 to 11, mini challenge in 11.1, homework in section 12: 12.1 full fine-tuning, 12.2 scoreboard, 12.3 best model, 12.4 reading.
 * Scoreboard: [outputs/session7/scoreboard.md](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/scoreboard.md) ([csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/scoreboard.csv)) · strategies: [finetuning_strategies.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/finetuning_strategies.csv) · each model's prediction for every lesion: [predictions_val.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/predictions_val.csv), [predictions_test.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/session7/predictions_test.csv) · [figures](https://github.com/bporto-eada/milk10k-eda/tree/main/outputs/session7/figures)
 * Reused code: the Milestone 1 split, label map and class weights ([outputs/splits](https://github.com/bporto-eada/milk10k-eda/tree/main/outputs/splits), [shared/datasets.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/datasets.py), [shared/labels.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/labels.py)); the Session 5 models and their tuned settings ([shared/classical.py](https://github.com/bporto-eada/milk10k-eda/blob/main/shared/classical.py), [comparison.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/outputs/classical_baseline/comparison.csv))
 * This report: [reports/session7_homework_report.md](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/session7_homework_report.md)
