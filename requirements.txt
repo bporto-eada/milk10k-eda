@@ -11,3 +11,4 @@ torchvision>=0.15
 jupyter
 nbconvert
 pytest
+markdown

@@ -30,7 +30,7 @@ def save_label_map(path=config.LABEL_MAP_JSON):
 
 def load_label_map(path=config.LABEL_MAP_JSON):
     if not path.exists():
-        raise FileNotFoundError(f"{path.name} not found: run  python milestone1.py labels")
+        raise FileNotFoundError(f"{path.name} not found: run  python m1_data/milestone1.py labels")
     return json.loads(path.read_text())
 
 
@@ -54,7 +54,7 @@ def sample_weights(labels, weights):
 def load_class_weights(label_col=config.LABEL, path=config.CLASS_WEIGHTS_JSON):
     """Class weights from class_weights.json as a tensor in label order."""
     if not path.exists():
-        raise FileNotFoundError(f"{path.name} not found: run  python milestone1.py loaders")
+        raise FileNotFoundError(f"{path.name} not found: run  python m1_data/milestone1.py loaders")
     entry = json.loads(path.read_text())[label_col]
     return torch.tensor(entry["weights"], dtype=torch.float32)
 

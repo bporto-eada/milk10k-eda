@@ -1,0 +1,21 @@
+{
+  "model": "ResNet-18 fine-tuned: whole network, 11 outputs",
+  "best_epoch": 5,
+  "threshold": 0.5,
+  "validation": {
+    "lesions": 786,
+    "macro_f1_argmax": 0.41278020539056026,
+    "macro_f1_at_0.5": 0.4204307597649468,
+    "lesions_without_any_yes": 0.25699745547073793
+  },
+  "test": {
+    "lesions": 787,
+    "macro_f1_argmax": 0.41889775335731955,
+    "macro_f1_at_0.5": 0.43200991649311005,
+    "lesions_without_any_yes": 0.2731893265565438,
+    "macro_f1_at_0.5_95_interval": [
+      0.3650252328549455,
+      0.4842550181285725
+    ]
+  }
+}

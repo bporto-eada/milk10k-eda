@@ -106,7 +106,7 @@ def save_normalization(mean, std, n_images, path=config.NORMALIZATION_JSON):
 def load_normalization(path=config.NORMALIZATION_JSON):
     """(mean, std) from normalization.json; fails loudly if the file was not produced yet."""
     if not path.exists():
-        raise FileNotFoundError(f"{path.name} not found: run  python milestone1.py preprocess")
+        raise FileNotFoundError(f"{path.name} not found: run  python m1_data/milestone1.py preprocess")
     stats = json.loads(path.read_text())
     return stats["mean"], stats["std"]
 

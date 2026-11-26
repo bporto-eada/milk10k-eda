@@ -35,10 +35,25 @@ CLASS_WEIGHTS_JSON = OUTPUT_DIR / "class_weights.json"
 NORMALIZATION_JSON = OUTPUT_DIR / "normalization.json"
 IMAGE_SIZE_SUMMARY_CSV = OUTPUT_DIR / "image_size_summary.csv"
 IMAGE_SIZES_CSV = OUTPUT_DIR / "image_sizes.csv"
-BASELINE_DIR = OUTPUT_DIR / "classical_baseline"            # classical ML baseline (classical_baseline.py)
+BASELINE_DIR = OUTPUT_DIR / "classical_baseline"            # classical ML baseline (m2_baseline/classical_baseline.py)
 BASELINE_FIGURES_DIR = BASELINE_DIR / "figures"
 IMAGE_FEATURES_CSV = BASELINE_DIR / "image_features.csv.gz"   # one row of hand-crafted features per image
 MANIPULATION_CSV = BASELINE_DIR / "image_manipulation.csv"     # isic_id -> image_manipulation, test subgroups only
+
+# ---- Milestones 4 and 5: best model, final pipeline ----
+M4_DIR = REPO_ROOT / "m4_best_model"
+M5_DIR = REPO_ROOT / "m5_final"
+M4_OUT = OUTPUT_DIR / "m4_best_model"                       # scoreboard, predictions, error analysis, fairness
+M5_OUT = OUTPUT_DIR / "m5_final"                            # 11-class results
+MODEL_M4 = M4_DIR / "model_m4.pt"                           # the best 3-class model (committed)
+MODEL_11CLASS = M5_DIR / "model_11class.pt"                 # the 11-class leaderboard model (committed)
+SUBMISSION_CSV = M5_DIR / "submission.csv"
+SUPPLEMENT_INPUT_CSV = DATA_DIR / "supplements" / "training_input.csv"   # skin tone and MONET scores per image
+# The 479 blind test lesions of the ISIC leaderboard: MILK10k_Test_Metadata.csv and MILK10k_Test_Input/
+TEST_DIR = Path(os.environ.get("MILK10K_TEST_DIR", REPO_ROOT / "milk10k_test")).expanduser()
+# Fine-tuning recipe of Session 7's best network, used again for the 3-class and for the 11-class model
+FINE_TUNE_EPOCHS = 6
+FINE_TUNE_LR = 1e-4
 
 # ---- labels ----
 LABEL = "diagnosis_1"            # primary target: Benign / Indeterminate / Malignant

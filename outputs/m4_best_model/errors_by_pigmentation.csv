@@ -1,0 +1,5 @@
+true,pigmentation,lesions,wrong,error_rate
+Benign,less pigmented half,70,39,0.5571428571428572
+Benign,more pigmented half,153,29,0.1895424836601307
+Malignant,less pigmented half,316,27,0.08544303797468354
+Malignant,more pigmented half,230,51,0.2217391304347826
