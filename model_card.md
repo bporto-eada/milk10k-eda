@@ -86,7 +86,7 @@ no at 0.5 and averages the F1 of the 11 classes. The scores below are computed t
 |---|---|---|---|
 | validation | 786 | 0.413 | 0.420 |
 | our own test split, opened once | 787 | 0.419 | **0.432** (95% interval 0.365 to 0.484) |
-| official MILK10k leaderboard (approach EADA-CV26-BC) | 479 | | pending upload |
+| official MILK10k leaderboard (approach EADA-CV26-BC) | 479 | | **0.362** |
 
 F1 per class at 0.5 on our test split: VASC 0.750, NV 0.714, BCC 0.652, SCCKA 0.588, MEL 0.525, AKIEC 0.427, DF 0.400, BKL 0.328, INF 0.250, BEN_OTH 0.118, MAL_OTH 0.000. MAL_OTH is never predicted (5 training lesions, one test lesion). The
 five classes with 1 to 7 test lesions make the macro-F1 uncertain. For about one lesion in four (27.3% on our test

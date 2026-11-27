@@ -8,14 +8,14 @@ result on the ISIC Challenge leaderboard.
 |---|---|
 | Final report (7 sections) | [report.pdf](report.pdf), source [reports/final_report.md](reports/final_report.md) |
 | Model card | [model_card.md](model_card.md) |
-| Leaderboard file | [m5_final/submission.csv](m5_final/submission.csv), approach name **EADA-CV26-BC** |
-| Official result | [m5_final/leaderboard.png](m5_final/leaderboard.png) (pending upload) |
+| Leaderboard file | [m5_final/submission_lesion_id.csv](m5_final/submission_lesion_id.csv), approach name **EADA-CV26-BC** |
+| Official result | **0.362**, screenshot [m5_final/leaderboard.png](m5_final/leaderboard.png) |
 | `predict()` for a new image | [m5_final/predict.py](m5_final/predict.py) |
 | Every file of every milestone | [SUBMISSION.md](SUBMISSION.md) |
 
 **Result.** The final model is an ImageNet ResNet-18 with the whole network fine-tuned, chosen on validation:
 macro-F1 **0.597 on the test lesions** (95% CI 0.549 to 0.645, 3 classes). The same network with 11 outputs scores
-0.420 on validation and 0.432 on our own test split under the leaderboard's rule; official score pending upload.
+0.420 on validation and 0.432 on our own test split under the leaderboard's rule; official leaderboard score **0.362**.
 
 ## 1. The project, milestone by milestone
 
@@ -322,7 +322,7 @@ them beats every run with them. Scoreboard:
 each of the 11 probabilities at 0.5: scored that way, the model reaches 0.420 on validation and **0.432 on our own
 test split** (95% interval 0.365 to 0.484). For about one lesion in four no class reaches 0.5; MAL_OTH (5 training
 lesions) is never predicted. `submission.csv` is the plain softmax output for the 479 blind lesions. Official score,
-approach name EADA-CV26-BC: pending upload ([m5_final/leaderboard.png](m5_final/leaderboard.png)). `submission.csv`
-names its id column `lesion`, as the brief and the challenge page ask; the scoring code ISIC publishes reads
-`lesion_id`, so `submission_lesion_id.csv` holds the same values under that name in case the first file is refused.
+approach name EADA-CV26-BC: **0.362** ([m5_final/leaderboard.png](m5_final/leaderboard.png)); report section 6
+explains the gap. The leaderboard refused the id column `lesion` that the brief names, so the official file is
+`submission_lesion_id.csv` (same values, column `lesion_id`).
 Report: [report.pdf](report.pdf); model card: [model_card.md](model_card.md).

@@ -9,7 +9,7 @@ The three items of the hand-in:
 
 1. **GitHub repository:** https://github.com/bporto-eada/milk10k-eda, how to run everything in [README.md](https://github.com/bporto-eada/milk10k-eda/blob/main/README.md)
 2. **Final report:** [report.pdf](https://github.com/bporto-eada/milk10k-eda/blob/main/report.pdf) (source [reports/final_report.md](https://github.com/bporto-eada/milk10k-eda/blob/main/reports/final_report.md))
-3. **Leaderboard proof:** [m5_final/submission.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/m5_final/submission.csv), screenshot of the official result [m5_final/leaderboard.png](https://github.com/bporto-eada/milk10k-eda/blob/main/m5_final/leaderboard.png), approach name **EADA-CV26-BC**
+3. **Leaderboard proof:** [m5_final/submission_lesion_id.csv](https://github.com/bporto-eada/milk10k-eda/blob/main/m5_final/submission_lesion_id.csv) (official score **0.362**), screenshot of the official result [m5_final/leaderboard.png](https://github.com/bporto-eada/milk10k-eda/blob/main/m5_final/leaderboard.png), approach name **EADA-CV26-BC**
 
 Model card: [model_card.md](https://github.com/bporto-eada/milk10k-eda/blob/main/model_card.md).
 

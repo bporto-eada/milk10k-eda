@@ -2,7 +2,7 @@
 
 <p class="meta">Bruno Curi · Computer Vision and Speech Recognition, EADA · course project, Milestones 1 to 5 ·
 leaderboard approach name EADA-CV26-BC · every score below is printed by the script named next to it and stored
-in <code>outputs/</code>. <b>Draft: the official leaderboard score of section 6 is still to be added.</b></p>
+in <code>outputs/</code>.</p>
 
 <div class="links" markdown="1">
 **Code and results**, repository [github.com/bporto-eada/milk10k-eda](https://github.com/bporto-eada/milk10k-eda)
@@ -22,8 +22,8 @@ with the ResNet-18 on validation (0.574 against 0.567) and is ahead on test (0.5
 errors have one thing in common: it treats brown, sharply bounded lesions as benign and pink ones as malignant, so it
 calls 33 of 68 melanomas "not malignant". That failure is worse on darker skin, where it finds 22 of 41 malignant
 lesions (54%) against 88% on lighter skin. A check shows that the class weights of the loss overshoot. With 11 outputs
-the same network scores 0.420 on validation and 0.432 on our own test split under the leaderboard's rule; the official
-score is pending (file ready to upload).
+the same network scores 0.420 on validation and 0.432 on our own test split under the leaderboard's rule, and **0.362 on the official
+leaderboard** (approach EADA-CV26-BC), just below the interval we estimated locally.
 </div>
 
 ## 1. Problem and data
@@ -327,7 +327,7 @@ locally: `f1_score(Y, P >= 0.5, average="macro", zero_division=0)`.
 |---|---|---|---|---|
 | validation (the epoch was chosen on it) | 786 | 0.413 | **0.420** | 25.7% |
 | our own test split, opened once for this model | 787 | 0.419 | **0.432** (95% interval 0.365 to 0.484) | 27.3% |
-| **official leaderboard, approach EADA-CV26-BC** | 479 | | **pending upload** | 29.4% |
+| **official leaderboard, approach EADA-CV26-BC** | 479 | | **0.362** | 29.4% |
 
 One validation lesion in four gets no diagnosis this way. The score still does not fall below the usual one, because
 the answers that disappear are the unsure ones: for those lesions the most likely class is right only 46% of the
@@ -369,7 +369,7 @@ softmax output of the model.
 </div>
 
 **Our estimate against the official score.** The fairest local estimate is the test split: **0.432**. Validation
-(0.420) chose the epoch. What we expect before uploading, and why the official score can differ:
+(0.420) chose the epoch. Before uploading, we listed why the official score could differ:
 
 1. **Small classes.** Five classes rest on 1 to 8 lesions in each of our splits. One lesion more or less moves such a
    class by 0.1 or more, and the macro-F1 by 0.01 or more. Our interval, 0.365 to 0.484, is that noise for 787 lesions;
@@ -383,12 +383,36 @@ softmax output of the model.
 4. **What is not a reason.** The test images were never used to train or tune anything, and the optimism of
    validation only affects the 0.420, not the 0.432.
 
-**Official result and the gap: to be written after the upload** (score, rank and screenshot `m5_final/leaderboard.png`).
+<div class="two" markdown="1">
+<div markdown="1">
+
+**Official result: 0.362**, 0.070 below our test estimate of 0.432 and just under its 95% interval (0.365 to 0.484).
+So the local estimate was too optimistic, by a little more than the sampling noise of 787 lesions explains. The
+reasons above say why, in order of weight. Reason 3 is the clearest: before any label was seen, the model already
+answered differently on the blind lesions (far fewer BCC, twice as many SCCKA, more lesions with no diagnosis), so
+the blind set is either a different mix of diagnoses or images that look different to the model, and both lower a
+macro-F1 that is averaged over 11 classes. Reason 1 adds noise on top: five classes rest on a handful of lesions.
+Reason 2 does not explain the gap: a missing MAL_OTH would have *raised* the official score by up to 0.09, so the
+blind set most likely holds at least one MAL_OTH lesion, which the model never predicts. We cannot check these
+reasons further, because the blind labels are hidden.
+
+The page also shows a "Validation Score" of 1.000. It is computed by ISIC on a part of the data we cannot see and is
+not our validation split; we do not use it.
+
+**The upload.** The first file, with its id column named `lesion` as the brief asks, was rejected ("Missing column
+in CSV: image or lesion_id"). The same values with the column named `lesion_id`
+(`m5_final/submission_lesion_id.csv`) were accepted; that is the official submission.
+
+</div>
+<div class="fig" style="flex:0.8" markdown="1">
+<img src="../m5_final/leaderboard.png" style="width:100%">
+<p class="small">The official result (<code>m5_final/leaderboard.png</code>).</p>
+</div>
+</div>
 
 *Limits of this model.* Its best epoch is the last of the 6, so it is probably under-trained; the recipe was kept so
-that only the labels and the last layer changed. One run, one seed. `submission.csv` names its first column `lesion`,
-as the brief and the challenge page ask; the scoring code that ISIC publishes reads `lesion_id`, so the same values
-are also saved as `submission_lesion_id.csv`, to upload only if the first file is refused.
+that only the labels and the last layer changed. One run, one seed. The official file is `submission_lesion_id.csv`; `submission.csv` holds
+the same values with the id column the brief names, which the site refused.
 
 ## 7. Model card and limits
 
